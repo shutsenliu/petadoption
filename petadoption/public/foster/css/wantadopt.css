@@ -1,0 +1,392 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.images {
+	width: 100%;
+	display: flex;
+	align-items: flex-start;
+	text-align: center;
+
+	transition: transform 0.5s;
+	/* 圖片切換在 0.5s 內完成，以免切換速度過快或者過慢，用戶不適 */
+}
+
+.window {
+	width: 370px;
+	height: 450px; /* 以上三張圖片的寬為：370px */
+	overflow: hidden;
+}
+
+.initImg {
+	width: 150px;
+	height: 80px;
+}
+
+.containImg {
+	object-fit: contain;
+}
+
+/* 篩選欄位 */
+
+.filter {
+	border: 5px dashed #f5eadf;
+	background-color: #f5eadf;
+	border-radius: 100px;
+	color: #854c0b;
+
+}
+
+.sumbit-c{
+	color: #f5eadf;
+	background-color: #ac6f47;
+	padding: 12px;
+	border-radius: 100px;
+	border: none;
+}
+
+.sumbit-c:active{
+	color: #f5eadf;
+	background-color: #e6a565;
+	padding: 12px;
+	border-radius: 100px;
+	border: none;
+}
+
+
+.box1 {
+	border: 5px ridge rgba(226, 107, 52, 0.6);
+	border-radius:  50px;
+}
+
+
+
+.imgsize {
+	display: block;
+	margin: 0 auto;
+	width: 200px;
+	height: 200px;
+	object-fit: cover;
+}
+
+.imgimg {
+	max-width: 100%;
+	height: auto;
+	border-radius: 50px;
+}
+
+.textsize {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.center {
+	text-align: center;
+}
+
+.left {
+	text-align: left;
+}
+
+.m0auto {
+	margin: 0auto;
+}
+
+.button {
+	display: inline-block;
+	border-radius: 100px;
+	border: none;	
+	text-align: center;
+	font-size: 16px;
+	padding: 12px;
+	width: 150px;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+	border-radius: 100px;
+}
+
+.button1 {
+	color: #854c0b;
+	background-color: white;
+	border: 2px solid #ac6f47;
+}
+
+.button1:hover {
+	background-color: #ac6f47;
+	color: white;
+	border: 2px solid #ac6f47;
+}
+
+.button span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+	color: #854c0b;
+}
+
+.button span:after {
+	content: '»»';
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+	color: white;
+}
+
+.button:hover span {
+	padding-right: 25px;
+	color: white;
+}
+
+.button:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
+/* 領養 */
+
+.button2 {
+	display: inline-block;
+	border-radius: 4px;
+	border: none;
+	text-align: center;
+	font-size: 16px;
+	padding: 16px;
+	width: 100px;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+	border-radius: 100px;
+}
+
+.button3 {
+	background-color: white;
+	border: 2px solid #854c0b;
+}
+
+.button3:hover {
+	background-color: #854c0b;
+	color: white;
+	border: 2px solid #854c0b;
+}
+
+.button2 span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+	color: #854c0b;
+}
+
+.button2 span:after {
+	content: '送出';
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+	color: white;
+}
+
+.button2:hover span {
+	padding-right: 25px;
+	color: white;
+}
+
+.button2:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
+
+.button4 {
+	font-size: 16px;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+}
+
+.button5 {
+	background-color: white;
+	border: 2px solid #854c0b;
+}
+
+.button5:hover {
+	background-color: #854c0b;
+	color: #854c0b;
+	border: 2px solid #854c0b;
+}
+
+.button4 span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+	color: #854c0b;
+}
+
+.button4 span:after {
+	content: 'GO';
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+	color: #854c0b;
+}
+
+.button4:hover span {
+	padding-right: 25px;
+	color: #854c0b;
+}
+
+.button4:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
+
+
+.object-fit {
+	object-fit: cover;
+}
+
+.prd-card-img {
+	height: 250px;
+}
+@media (max-width:999px) {
+	.prd-card-img {
+		height: 200px;
+	}	
+}
+@media (max-width:768px) {
+	.prd-card-img {
+		height: 400px;
+	}	
+}
+.p-6{
+	padding: 3.5rem;
+}
+.img--scale {
+    transform: scale(1);
+    transition: all .5s ease-out;
+}
+.img--scale:hover {
+    transform: scale(1.2);
+}
+
+.wrapper {
+	max-width: 500px;
+	width: 100%;
+  }
+  
+  .swiper-slide {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+  }
+  
+  .gallery-top {
+	width: 100%;
+	height: 300px;
+	bottom: 10px;
+  }
+  
+  .gallery-thumbs {
+	width: 100%;
+	height: 80px;
+  }
+  
+  .gallery-thumbs .swiper-slide {
+	opacity: 0.4;
+  }
+  
+  .gallery-thumbs .swiper-slide-thumb-active {
+	opacity: 1;
+  }
+
+  .Information-field {
+	  text-align: left;
+	  color: #854c0b;
+	  background-color: #f5eadf;
+	  border-radius: 25px;
+  }
+
+  .illustrate{
+	text-align: left;
+	color: #854c0b;
+	text-indent: -7em;
+	padding: 0px 0px 0px 7em;
+  }
+
+  .card-color{
+	color: #854c0b;
+  }
+
+
+  .sumbit2-c{
+	color: #854c0b;
+	background-color: #f5eadf;
+	padding: 12px;
+	border-radius: 100px;
+	border: none;
+}
+
+.sumbit2-c:active{
+	color: #f5eadf;
+	background-color: #ac6f47;
+	padding: 12px;
+	border-radius: 100px;
+	border: none;
+}
+
+.danger{
+	background-color: #854c0b;
+	color: white;
+	border-radius: 50px;
+	font-size: 6px;
+	padding: 4px;
+}
+  

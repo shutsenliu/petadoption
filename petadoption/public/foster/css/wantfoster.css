@@ -1,0 +1,161 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.border-5-radius{
+	border: 5px dashed #f5eadf;
+	background-color: #f5eadf;
+	color: #854c0b;
+	border-radius: 50px;
+	opacity: 0.8;
+	backdrop-filter: blur(5px);
+	padding: 12px;
+}
+
+
+.upload-content .content-img{
+	width: 100%;
+}
+.upload-content .content-img-list{
+	display: inline;
+	width: 900px;
+}
+.upload-content .content-img .ico-plus{
+	display: inline-block;	
+	vertical-align: middle;
+	margin-left: 35px;
+	width: 80%;
+	height: 130px;
+}
+.upload-content .content-img-list-item{
+	position: relative;
+	display: inline-block;
+	width: 170px;
+	height: 145px;
+	margin: 20px;
+}
+
+/* 刪除建 */
+.upload-content .content-img-list-item .delete-btn{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	text-align: center;
+	width: 100%;
+	background: rgb(0, 0, 0);
+	height: 30px;
+	line-height: 30px;
+	color: #fff;
+	cursor: pointer;
+	border-radius: 0px 0px 25px 25px;
+}
+
+/* 預覽圖大小 */
+.upload-content .content-img-list-item img{
+	width: 170px;
+	height: 145px;
+	border-radius: 25px;
+}
+
+/*图片上传按钮*/
+.upload-content .file {
+	position: relative;
+	display: inline-block;
+	border: 5px dashed #854c0b;
+	border-radius: 25px;
+	color: #854c0b;
+	text-decoration: none;
+	text-indent: 0;
+	width: 170px;
+	height: 145px;
+	line-height: 130px;
+}
+/* 上傳鍵 */
+.upload-content .file input {
+	position: absolute;
+	font-size: 0px;
+	right: 0;
+	top: 0;
+	opacity: 0;
+	cursor: pointer;
+	width: 170px;
+	height: 145px;
+}
+.upload-content .file:hover {
+	color: #854c0b;
+}
+
+.danger{
+	background-color: #854c0b;
+	color: white;
+	border-radius: 50px;
+	font-size: 6px;
+	padding: 4px;
+
+}
+
+.title-c{
+	color: #854c0b;
+}
+
+.sumbit-c{
+	color: #854c0b;
+	background-color: #f5eadf;
+	padding: 12px;
+	border-radius: 100px;
+	border: none;
+}
+
+.sumbit-c:active{
+	color: #f5eadf;
+	background-color: #ac6f47;
+	padding: 12px;
+	border-radius: 100px;
+	border: none;
+}
+
