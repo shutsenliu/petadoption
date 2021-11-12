@@ -32,14 +32,20 @@ Route::get('/index/login', "App\Http\Controllers\AuthController@showlogin");
 //前台登入頁
 Route::post('/index/login', "App\Http\Controllers\AuthController@login");
 
-//前台註冊頁-2
+//前台登出頁
+Route::get('/index/logout', "App\Http\Controllers\AuthController@logout");
+
+//前台註冊信箱頁
+Route::get('/index/registersendemail', "App\Http\Controllers\AuthController@showregistersendemail");
+
+//前台註冊發送驗證碼
+Route::post("/send-chkmaemail", "App\Http\Controllers\MailController@sendChkMail");
+
+//前台註冊頁
 Route::get('/index/register', "App\Http\Controllers\AuthController@showregister");
 
 //前台註冊頁
 Route::post('/index/register', "App\Http\Controllers\AuthController@register");
-
-//前台註冊發送驗證碼
-Route::post("/send-chkmaemail", "App\Http\Controllers\MailController@sendChkMail");
 
 //前台忘記密碼頁
 Route::get('/index/forgetpwd', "App\Http\Controllers\AuthController@showforgetpwd");
@@ -47,11 +53,17 @@ Route::get('/index/forgetpwd', "App\Http\Controllers\AuthController@showforgetpw
 //前台忘記密碼頁
 Route::post('/index/forgetpwd', "App\Http\Controllers\AuthController@forgetpwd");
 
+//前台忘記密碼填信箱送驗證碼頁
+Route::get("/index/forgetpwdsendemail", "App\Http\Controllers\AuthController@forgetpwdsendmail");
+
 //前台忘記密碼頁送驗證碼
 Route::post("/send-forgetpwdemail", "App\Http\Controllers\MailController@sendForgetpwdMail");
 
 //前台會員個人資訊頁
-Route::get('/index/memberpersonal', "App\Http\Controllers\AuthpageController@memberpersonal")->middleware('memberAuth');
+Route::get('/index/memberpersonal', "App\Http\Controllers\AuthpageController@showmemberpersonal")->middleware('memberAuth');
+
+//前台會員個人資訊頁更新
+Route::post('/index/memberpersonal', "App\Http\Controllers\AuthpageController@memberpersonal");
 
 //前台重設密碼頁
 Route::get('/index/resetpwd', "App\Http\Controllers\AuthpageController@showresetpwd")->middleware('memberAuth');
@@ -62,22 +74,38 @@ Route::post('/index/resetpwd', "App\Http\Controllers\AuthpageController@resetpwd
 //前台送養資訊頁
 Route::get('/index/fosterinformation', "App\Http\Controllers\AuthpageController@fosterinformation")->middleware('memberAuth');
 
-//前台送養資訊個別明細(未送出)
-Route::get('/index/petdetail', "App\Http\Controllers\AuthpageController@petdetail")->middleware('memberAuth');
+// 接收查看/編輯的pk
+Route::post('/index/fosterinformation', "App\Http\Controllers\AuthpageController@fosterinformationdetail")->middleware('memberAuth');
 
-//前台送養資訊管理-個別明細(已送出)
-Route::get('/index/applysent', "App\Http\Controllers\AuthpageController@applysent")->middleware('memberAuth');
+//前台領養資訊頁 
+Route::get('/index/adoptinformation', "App\Http\Controllers\AuthpageController@adoptinformation")->middleware('memberAuth');
+
+// 抓pk給顯示想領養XXX領養清單
+Route::post('/viewwantpetlist', "App\Http\Controllers\AuthpageController@wantpetlist")->middleware('memberAuth');
+
+//更新前台送養資訊個別明細(未送出)
+Route::post('/index/petdetail', "App\Http\Controllers\AuthpageController@updatepetdetail");
+
+// 顯示前台送養資訊個別明細(未送出)
+Route::get('/index/petdetail', "App\Http\Controllers\AuthpageController@fosterinformationdetail");
+
+// // 顯示前台領養資訊明細
+// Route::get('/index/adoptdetail', "App\Http\Controllers\AuthpageController@showadoptdetail")->middleware('memberAuth');
+
+// 前台領養資訊明細
+Route::post('/index/adoptdetail', "App\Http\Controllers\AuthpageController@adoptdetail")->middleware('memberAuth');
 
 //前台想領養XXX(動物暱稱)的清單
 Route::get('/index/wantpetlist', "App\Http\Controllers\AuthpageController@wantpetlist")->middleware('memberAuth');
 
+Route::post('/index/wantpetlist', "App\Http\Controllers\AuthpageController@petapply")->middleware('memberAuth');
+
 //前台申請領養明細
 Route::get('/index/petapply', "App\Http\Controllers\AuthpageController@petapply")->middleware('memberAuth');
 
-//前台領養資訊頁
-Route::get('/index/adoptinformation', "App\Http\Controllers\AuthpageController@adoptinformation")->middleware('memberAuth');
 
-
+// 宣導頁首頁
+Route::get('/index/educate', "App\Http\Controllers\HomeController@educate");
 
 //宣導頁幫助浪浪
 Route::get('/index/educatehowtohelp', "App\Http\Controllers\HomeController@educatehowtohelp");
@@ -129,15 +157,25 @@ Route::get('/index/educatedog3', "App\Http\Controllers\HomeController@educatedog
 //TEAM 3
 
 //我要領養頁
-Route::get('/fosterlist', "App\Http\Controllers\FosterlistController@index")->middleware('memberAuth');
+Route::get('/fosterlist', "App\Http\Controllers\FosterlistController@index");
 
-Route::resource('fosterlist', 'App\Http\controllers\FosterlistController');
+//篩選
+Route::post('/fosterlist', "App\Http\Controllers\WantadoptformController@search");
+
+//我要領養-填寫資料
+Route::get('/wantadoptform/{a}', "App\Http\Controllers\WantadoptformController@index")->middleware('memberAuth');
+
+//我要領養store
+Route::post('/wantadoptform/{a}', "App\Http\Controllers\WantadoptformController@store");
+
 
 //刊登須知
-Route::get('/notice', "App\Http\Controllers\HomeController@wantfoster");
+Route::get('/notice', "App\Http\Controllers\HomeController@wantfoster")->middleware('memberAuth');
 
 //我要送養頁
-Route::get('/fosterlist/create', "App\Http\Controllers\FosterlistController@create");
+Route::get('/fosterlist/create', "App\Http\Controllers\FosterlistController@create")->middleware('memberAuth');
+Route::post('/fosterlist/create', "App\Http\Controllers\FosterlistController@store")->middleware('memberAuth');
+
 
 
 

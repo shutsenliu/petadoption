@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Adoptlist;
 use App\Models\fosterlist;
+use App\Models\Member;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 use function GuzzleHttp\Promise\each;
 
 class FosterlistController extends Controller
@@ -15,9 +17,26 @@ class FosterlistController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { 
-        $fosterList = fosterlist::all();
-        return view('home.wantadopt', compact('fosterList'));
+    {
+        $userpk = session('userpk');
+
+        $fosterList = Fosterlist::where('status', "送養中")->get();
+        //抓出會員領養過的清單
+        $adoptList = Adoptlist::where('member_fk', $userpk)->get();
+        // return dd($adoptList);
+
+        //json圖檔
+        foreach($fosterList as $foster){
+            $data = json_decode($foster->pic, true);
+            $foster->pic = $data;
+        };
+
+        //篩選
+        $cityvalue = "";
+        $typevalue = "";
+        $varietyvalue = "";
+        $gendervalue = "";
+        return view('home.wantadopt', compact('fosterList', 'adoptList', 'cityvalue','typevalue','varietyvalue','gendervalue', 'userpk'));
     }
 
     /**
@@ -38,6 +57,7 @@ class FosterlistController extends Controller
      */
     public function store(Request $request)
     {
+
         $foster = new fosterlist();
         $foster->pet_type = $request->Type;
         $foster->pet_name = $request->NickName;
@@ -47,16 +67,35 @@ class FosterlistController extends Controller
         $foster->pet_bodytype = $request->Body;
         $foster->pet_ligation = $request->Ligation;
         $foster->pet_city = $request->City;
+
+        //判斷登入使用者的pk
+        $account = session("account");
+        $memberData =  Member::where('email', $account)->first();
+
+        $foster->member_fk = $memberData->pk;
+        $foster->publish_date = date("Y-m-d");
+        $foster->status = "審核中(刊登)";
+
         //$foster->pic = $request->uploadImg;
         $foster->introduction = $request->Note;
         // 檔案上傳
-        $files = $request->file('uploadImg');
-        // 檢視抓到的檔案內容dd($files);
+        $files = $request->file('imageFile');
+
+        // 將上傳的檔案命名，並移到public/images
+        // 將新的檔名依序存到陣列
         foreach ($files as $file) {
-            $foster->pic = $imageName = time() . '.' . $file->extension();
-            $file->move(public_path('images'), $imageName);
+
+            $name = time() . '.' . $file->getClientOriginalName();
+            $file->move(public_path() . '/images/', $name);
+            $imgData[] = $name;
         }
+
+        //將圖片欄位存入json格式的檔名
+        $foster->pic = json_encode($imgData);
         $foster->save();
+
+
+
         return redirect("/index/fosterinformation");
     }
 
@@ -103,7 +142,4 @@ class FosterlistController extends Controller
     {
         //
     }
-
-
-
 }

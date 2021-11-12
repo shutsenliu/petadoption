@@ -43,6 +43,7 @@
             outline: 0 none !important;
         }
 
+
         /* 分頁設定 */
 
         nav ul {
@@ -92,6 +93,50 @@
                 align-items: flex-end !important;
 
             }
+        }
+
+        /* 各斷點 */
+        @media (max-width: 800px) {
+            .btn-sm {
+                font-size: .400rem !important;
+            }
+
+            .btn_k {
+                font-size: .400rem !important;
+            }
+
+            .ts {
+                font-size: .200rem !important;
+            }
+
+            .arr {
+                font-size: .200rem !important;
+                height: 35px;
+            }
+
+            .tbs {
+                font-size: .200rem !important;
+            }
+
+            .nav-link2 {
+                font-size: .800rem !important;
+            }
+
+            nav ul {
+                font-size: 0.7rem !important;
+            }
+        }
+
+        /* 改radio顏色 */
+        .form-check-input:focus {
+            border-color: #c9ac98 !important;
+            outline: 0 !important;
+            box-shadow: 0 0 0 0.25rem #ac70473b !important;
+        }
+
+        .form-check-input:checked {
+            background-color: #cf8756 !important;
+            border-color: #cf8756 !important;
         }
 
     </style>
@@ -145,7 +190,7 @@
 
             <div class="mx-auto row pt-5">
 
-                <div class="www mx-auto pb-1" style="text-align: center;">
+                <div class="www mx-auto pb-1" style="text-align: center; font-size: medium;">
                     @if (@isset($err))
                         <a class="fas fa-exclamation-circle" style="display: inline-block; color: #e6a565;">&nbsp</a>
                         {{ $err }}
@@ -154,34 +199,30 @@
 
                 <!-- 狀態下拉選單+搜尋框 -->
                 <div class="container">
-                    <form action="" method="post" class="row mx-auto justify-content-end pb-4 pe-5 px-5 mx-5 me-3">
+                    <form action="" method="post" class="row mx-auto justify-content-end pb-4">
                         @csrf
-                        <div class="col-lg-4 pe-4">
-                            <div class="d-flex flex-lg-row me-4 woo">
+                        <div class="col-lg-3">
 
-                                <!-- 狀態下拉選單 -->
-                                <div class="col-lg-5 ps-3 ms-2 mx-2">
-                                    <select class="arr" name="status">
-                                        <option value="" style="display: none;">狀態</option>
-                                        <option value="送養中" {{ $statusvalue == '送養中' ? 'selected' : '' }}>送養中</option>
-                                        <option value="已送養" {{ $statusvalue == '已送養' ? 'selected' : '' }}>已送養</option>
-                                        <option value="審核中" {{ $statusvalue == '審核中' ? 'selected' : '' }}>審核中</option>
-                                        <option value="未通過" {{ $statusvalue == '未通過' ? 'selected' : '' }}>未通過</option>
-                                        <option value="待刪除" {{ $statusvalue == '待刪除' ? 'selected' : '' }}>待刪除</option>
-                                    </select>
-                                </div>
+                            <!-- 狀態下拉選單 -->
+                            <div class="input-group ms-4">
+                                <select class="arr" name="status">
+                                    <option value="" selected>全部</option>
+                                    <option value="送養中" {{ $statusvalue == '送養中' ? 'selected' : '' }}>送養中</option>
+                                    <option value="已送養" {{ $statusvalue == '已送養' ? 'selected' : '' }}>已送養</option>
+                                    <option value="審核中(刊登)" {{ $statusvalue == '審核中(刊登)' ? 'selected' : '' }}>審核中(刊登)</option>
+                                    <option value="審核中(更新)" {{ $statusvalue == '審核中(更新)' ? 'selected' : '' }}>審核中(更新)</option>
+                                    <option value="審核中(送出)" {{ $statusvalue == '審核中(送出)' ? 'selected' : '' }}>審核中(送出)</option>
+                                </select>
 
                                 <!-- 搜尋框 -->
-                                <div class="input-group col-lg-8 pe-2">
-                                    <input type="search" name="search" class="form-control form-control-sm ts"
-                                        style="border-color: #d0a98a; font-size: small;" placeholder="請輸入清單編號"
-                                        aria-label="Recipient's username" aria-describedby="button-addon2"
-                                        value="{{ $searchwords }}">
-                                    <button class="btn_k btn-k5" type="submit" id="button-addon2"><i
-                                            class="fas fa-search"></i></button>
-                                </div>
-
+                                <input type="search" name="search" class="form-control form-control-sm ts"
+                                    style="border-color: #d0a98a; font-size: small;" placeholder="請輸入清單編號..."
+                                    aria-label="Recipient's username" aria-describedby="button-addon2"
+                                    value="{{ $searchwords }}">
+                                <button class="btn_k btn-k5" type="submit" id="button-addon2"><i
+                                        class="fas fa-search"></i></button>
                             </div>
+
                         </div>
 
                     </form>
@@ -360,9 +401,9 @@
                                                                 <option value="混種"
                                                                     {{ $item->pet_type == '狗' && $item->pet_variety == '混種' ? 'selected' : '' }}>
                                                                     混種</option>
-                                                                <option value="瑪爾濟斯"
-                                                                    {{ $item->pet_variety == '瑪爾濟斯' ? 'selected' : '' }}>
-                                                                    瑪爾濟斯</option>
+                                                                <option value="馬爾濟斯"
+                                                                    {{ $item->pet_variety == '馬爾濟斯' ? 'selected' : '' }}>
+                                                                    馬爾濟斯</option>
                                                                 <option value="米格魯"
                                                                     {{ $item->pet_variety == '米格魯' ? 'selected' : '' }}>
                                                                     米格魯</option>
@@ -484,16 +525,16 @@
                                                     <label for="pet_gender" class="col-form-label col-lg-4"
                                                         style="color: #ac6f47; font-weight: 600; font-size: medium;">動物性別：</label>
                                                     <div class="col-lg-8" style="padding-top: 8px;">
-                                                        <div class="form-check form-check-inline"
-                                                            style="padding-left: 0px;">
+                                                        <div class="form-check form-check-inline" style="">
                                                             <input type="radio" name="pet_gender" value="公" id="M"
+                                                                class="form-check-input"
                                                                 style="color: #d0a98a; font-size: small;"
                                                                 {{ $item->pet_gender == '公' ? 'checked' : '' }}>
                                                             <label for="M">公</label>
                                                         </div>
-                                                        <div class="form-check form-check-inline"
-                                                            style="padding-left: 0px;">
+                                                        <div class="form-check form-check-inline" style="">
                                                             <input type="radio" name="pet_gender" value="母" id="F"
+                                                                class="form-check-input"
                                                                 style="color: #d0a98a; font-size: small;"
                                                                 {{ $item->pet_gender == '母' ? 'checked' : '' }}>
                                                             <label for="F">母</label>
@@ -536,16 +577,16 @@
                                                     <label for="pet_ligation" class="col-form-label col-lg-4"
                                                         style="color: #ac6f47; font-weight: 600; font-size: medium;">是否結紮：</label>
                                                     <div class="col-lg-8" style="padding-top: 8px;">
-                                                        <div class="form-check form-check-inline"
-                                                            style="padding-left: 0px;">
+                                                        <div class="form-check form-check-inline" style="">
                                                             <input type="radio" name="pet_ligation" value="是" id="O"
+                                                                class="form-check-input"
                                                                 style="color: #d0a98a; font-size: small;"
                                                                 {{ $item->pet_ligation == '是' ? 'checked' : '' }}>
                                                             <label for="O">是</label>
                                                         </div>
-                                                        <div class="form-check form-check-inline"
-                                                            style="padding-left: 0px;">
+                                                        <div class="form-check form-check-inline" style="">
                                                             <input type="radio" name="pet_ligation" value="否" id="X"
+                                                                class="form-check-input"
                                                                 style="color: #d0a98a; font-size: small;"
                                                                 {{ $item->pet_ligation == '否' ? 'checked' : '' }}>
                                                             <label for="X">否</label>
@@ -656,20 +697,20 @@
                                                             <option value="已送養"
                                                                 {{ $item->status == '已送養' ? 'selected' : '' }}>已送養
                                                             </option>
-                                                            <option value="審核中"
-                                                                {{ $item->status == '審核中' ? 'selected' : '' }}>審核中
+                                                            <option value="審核中(刊登)"
+                                                                {{ $item->status == '審核中(刊登)' ? 'selected' : '' }}>審核中(刊登)
                                                             </option>
-                                                            <option value="未通過"
-                                                                {{ $item->status == '未通過' ? 'selected' : '' }}>未通過
+                                                            <option value="審核中(更新)"
+                                                                {{ $item->status == '審核中(更新)' ? 'selected' : '' }}>審核中(更新)
                                                             </option>
-                                                            <option value="待刪除"
-                                                                {{ $item->status == '待刪除' ? 'selected' : '' }}>待刪除
+                                                            <option value="審核中(送出)"
+                                                                {{ $item->status == '審核中(送出)' ? 'selected' : '' }}>審核中(送出)
                                                             </option>
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            
                                             <!-- 送養日期 -->
                                             <div class="col-lg-12">
                                                 <div class="mr-auto row mb-3">
@@ -834,18 +875,13 @@
                                                 <label for="pic" class="col-form-label col-lg-2"
                                                     style="color: #ac6f47; font-weight: 600; font-size: medium;">動物照片：</label>
                                                 <div class="col-lg-1"></div>
-                                                <div class="col-lg-2">
-                                                    <img class="img-fluid img-thumbnail" style="border-color: #d0a98a;"
-                                                        src="/admin/img/dbtest1.jpg" alt="">
-                                                </div>
-                                                <div class="col-lg-2">
-                                                    <img class="img-fluid img-thumbnail" style="border-color: #d0a98a;"
-                                                        src="/admin/img/dbtest2.jpg" alt="">
-                                                </div>
-                                                <div class="col-lg-2">
-                                                    <img class="img-fluid img-thumbnail" style="border-color: #d0a98a;"
-                                                        src="/admin/img/dbtest3.jpg" alt="">
-                                                </div>
+
+                                                @foreach ($item->pic as $value)
+                                                    <div class="col-lg-2">
+                                                        <img class="img-fluid img-thumbnail" style="border-color: #d0a98a;"
+                                                            src="/images/{{ $value }}" alt="">
+                                                    </div>
+                                                @endforeach
 
 
                                             </div>
@@ -882,7 +918,7 @@
                         <div class="modal-body">
                             <!-- 表單 -->
                             <div class="container py-3">
-                                <form class="mx-auto row g-2" action="/admin/fosterlist" method="post">
+                                <form class="mx-auto row g-2" action="/admin/fosterlist/delete" method="post">
                                     @csrf
 
                                     <!-- 分欄 -->
@@ -1005,8 +1041,8 @@
                                                                     {{ $item->pet_type == '狗' && $item->pet_variety == '混種' ? 'selected' : '' }}>
                                                                     混種</option>
                                                                 <option value="pv2"
-                                                                    {{ $item->pet_variety == '瑪爾濟斯' ? 'selected' : '' }}>
-                                                                    瑪爾濟斯</option>
+                                                                    {{ $item->pet_variety == '馬爾濟斯' ? 'selected' : '' }}>
+                                                                    馬爾濟斯</option>
                                                                 <option value="pv3"
                                                                     {{ $item->pet_variety == '米格魯' ? 'selected' : '' }}>
                                                                     米格魯</option>
@@ -1134,17 +1170,17 @@
                                                     <label for="pet_gender" class="col-form-label col-lg-4"
                                                         style="color: #ac6f47; font-weight: 600; font-size: medium;">動物性別：</label>
                                                     <div class="col-lg-8" style="padding-top: 8px;">
-                                                        <div class="form-check form-check-inline"
-                                                            style="padding-left: 0px;">
+                                                        <div class="form-check form-check-inline" style="">
                                                             <input type="radio" name="pet_gender" value="" id="M"
+                                                                class="form-check-input"
                                                                 style="color: #d0a98a; font-size: small;"
                                                                 {{ $item->pet_gender == '公' ? 'checked' : '' }}
                                                                 disabled>
                                                             <label for="M">公</label>
                                                         </div>
-                                                        <div class="form-check form-check-inline"
-                                                            style="padding-left: 0px;">
+                                                        <div class="form-check form-check-inline" style="">
                                                             <input type="radio" name="pet_gender" value="" id="F"
+                                                                class="form-check-input"
                                                                 style="color: #d0a98a; font-size: small;"
                                                                 {{ $item->pet_gender == '母' ? 'checked' : '' }}
                                                                 disabled>
@@ -1187,17 +1223,17 @@
                                                     <label for="pet_ligation" class="col-form-label col-lg-4"
                                                         style="color: #ac6f47; font-weight: 600; font-size: medium;">是否結紮：</label>
                                                     <div class="col-lg-8" style="padding-top: 8px;">
-                                                        <div class="form-check form-check-inline"
-                                                            style="padding-left: 0px;">
+                                                        <div class="form-check form-check-inline" style="">
                                                             <input type="radio" name="pet_ligation" value="" id="O"
+                                                                class="form-check-input"
                                                                 style="color: #d0a98a; font-size: small;"
                                                                 {{ $item->pet_ligation == '是' ? 'checked' : '' }}
                                                                 disabled>
                                                             <label for="O">是</label>
                                                         </div>
-                                                        <div class="form-check form-check-inline"
-                                                            style="padding-left: 0px;">
+                                                        <div class="form-check form-check-inline" style="">
                                                             <input type="radio" name="pet_ligation" value="" id="X"
+                                                                class="form-check-input"
                                                                 style="color: #d0a98a; font-size: small;"
                                                                 {{ $item->pet_ligation == '否' ? 'checked' : '' }}
                                                                 disabled>
@@ -1311,19 +1347,21 @@
                                                             <option value="已送養"
                                                                 {{ $item->status == '已送養' ? 'selected' : '' }}>已送養
                                                             </option>
-                                                            <option value="審核中"
-                                                                {{ $item->status == '審核中' ? 'selected' : '' }}>審核中
+                                                            <option value="審核中(刊登)"
+                                                                {{ $item->status == '審核中(刊登)' ? 'selected' : '' }}>審核中(刊登)
                                                             </option>
-                                                            <option value="未通過"
-                                                                {{ $item->status == '未通過' ? 'selected' : '' }}>未通過
+                                                            <option value="審核中(更新)"
+                                                                {{ $item->status == '審核中(更新)' ? 'selected' : '' }}>審核中(更新)
                                                             </option>
-                                                            <option value="待刪除"
-                                                                {{ $item->status == '待刪除' ? 'selected' : '' }}>待刪除
+                                                            <option value="審核中(送出)"
+                                                                {{ $item->status == '審核中(送出)' ? 'selected' : '' }}>審核中(送出)
                                                             </option>
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            
 
                                             <!-- 送養日期 -->
                                             <div class="col-lg-12">
@@ -1493,18 +1531,12 @@
                                                 <label for="pic" class="col-form-label col-lg-2"
                                                     style="color: #ac6f47; font-weight: 600; font-size: medium;">動物照片：</label>
                                                 <div class="col-lg-1"></div>
-                                                <div class="col-lg-2">
-                                                    <img class="img-fluid img-thumbnail" style="border-color: #d0a98a;"
-                                                        src="/admin/img/dbtest1.jpg" alt="">
-                                                </div>
-                                                <div class="col-lg-2">
-                                                    <img class="img-fluid img-thumbnail" style="border-color: #d0a98a;"
-                                                        src="/admin/img/dbtest2.jpg" alt="">
-                                                </div>
-                                                <div class="col-lg-2">
-                                                    <img class="img-fluid img-thumbnail" style="border-color: #d0a98a;"
-                                                        src="/admin/img/dbtest3.jpg" alt="">
-                                                </div>
+                                                @foreach ($item->pic as $value)
+                                                    <div class="col-lg-2">
+                                                        <img class="img-fluid img-thumbnail" style="border-color: #d0a98a;"
+                                                            src="/images/{{ $value }}" alt="">
+                                                    </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
@@ -1531,7 +1563,7 @@
     </header>
 
     @if (isset($key))
-        <div class="row mx-auto" style="width: 300px">
+        <div class="row mx-auto" style="width: 150px">
             <div class="col-md-4 justify-content-center">
                 {{ $fosterList->links('pagination::bootstrap-4') }}
             </div>

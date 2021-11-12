@@ -13,7 +13,7 @@
             <h1 class="text-center tt pt-5 pb-5 title-c">填寫表單</h1>
         </div>
         <!-- 刊登表單 -->
-        <form method="post" action="/fosterlist" enctype="multipart/form-data">
+        <form method="post" action="/fosterlist/create" enctype="multipart/form-data">
         @csrf
             <div class="container border-5-radius pt-5 pl-5 pr-5 mb-5">
                 <div class="row ">
@@ -138,24 +138,21 @@
                             </ul>
                             <div id="file0" class="file">
                                 <i class="ico-plus"><b>點擊上傳圖片</b></i>
-                                <input type="file" name="uploadImg[]" id="uploadImg0" accept="image/*" multiple onchange="changeImg()">
+                                <input type="file" name="imageFile[]" id="uploadImg0" accept="image/*" multiple onchange="changeImg()">
                             </div>
                             <div id="file1" class="file" style="display: none">
                                 <i class="ico-plus"><b>點擊上傳圖片</b></i>
-                                <input type="file" name="uploadImg[]" id="uploadImg1" accept="image/*" multiple onchange="changeImg()">
+                                <input type="file" name="imageFile[]" id="uploadImg1" accept="image/*" multiple onchange="changeImg()">
                             </div>
                             <div id="file2" class="file" style="display: none">
                                 <i class="ico-plus"><b>點擊上傳圖片</b></i>
-                                <input type="file" name="uploadImg[]" id="uploadImg2" accept="image/*" multiple onchange="changeImg()">
+                                <input type="file" name="imageFile[]" id="uploadImg2" accept="image/*" multiple onchange="changeImg()">
                             </div>
                         </div>
-
-
 
                     </div>
                 </div>
             </div>
-
 
             <!-- 下一步 -->
             <div class="pb-5 text-center ">

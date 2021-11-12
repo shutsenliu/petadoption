@@ -31,9 +31,11 @@ return [
     |
     */
 
-    'lifetime' => env('SESSION_LIFETIME', 120),
+    //24小時後會清除session
+    'lifetime' => env('SESSION_LIFETIME', 1440),
 
-    'expire_on_close' => false,
+    //關閉瀏覽器後會清除session
+    'expire_on_close' => true,
 
     /*
     |--------------------------------------------------------------------------

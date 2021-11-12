@@ -29,7 +29,7 @@ class SendMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('聯絡我們-回饋')->view('email.sendMail');
+        return $this->subject('Pet me home聯絡我們-回饋')->view('email.sendMail');
 
     }
 }

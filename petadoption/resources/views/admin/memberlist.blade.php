@@ -86,7 +86,60 @@
             background-color: #fff !important;
             border-color: #dee2e600 !important;
         }
-        
+
+        /* 狀態下拉選單 */
+        @media (max-width: 500px) {
+            .woo {
+                flex-direction: column-reverse !important;
+                align-items: flex-end !important;
+
+            }
+        }
+
+        /* 各斷點 */
+        @media (max-width: 800px) {
+            .btn-sm {
+                font-size: .400rem !important;
+            }
+
+            .btn_k {
+                font-size: .400rem !important;
+            }
+
+            .ts {
+                font-size: .200rem !important;
+            }
+
+            .arr {
+                font-size: .200rem !important;
+                height: 35px;
+            }
+
+            .tbs {
+                font-size: .200rem !important;
+            }
+
+            .nav-link2 {
+                font-size: .800rem !important;
+            }
+
+            nav ul {
+                font-size: 0.7rem !important;
+            }
+        }
+
+        /* 改radio顏色 */
+        .form-check-input:focus {
+            border-color: #c9ac98 !important;
+            outline: 0 !important;
+            box-shadow: 0 0 0 0.25rem #ac70473b !important;
+        }
+
+        .form-check-input:checked {
+            background-color: #cf8756 !important;
+            border-color: #cf8756 !important;
+        }
+
     </style>
 @endsection
 
@@ -137,7 +190,7 @@
 
             <div class="mx-auto row pt-5">
 
-                <div class="www mx-auto pb-1" style="text-align: center;">
+                <div class="www mx-auto pb-1" style="text-align: center; font-size: medium;">
 
                     @if (@isset($err))
                         <a class="fas fa-exclamation-circle" style="display: inline-block; color: #e6a565;">&nbsp</a>
@@ -147,29 +200,25 @@
 
                 <!-- 狀態下拉選單+搜尋框 -->
                 <div class="container">
-                    <form action="" method="post" class="row mx-auto justify-content-end pb-4 pe-5 px-5 mx-5 me-3">
+                    <form action="" method="post" class="row mx-auto justify-content-end pb-4">
                         @csrf
-                        <div class="col-lg-4 pe-4">
-                            <div class="d-flex flex-lg-row me-4 woo">
+                        <div class="col-lg-3">
 
-                                <!-- 狀態下拉選單 -->
-                                <div class="col-lg-5 ps-4 ms-2 mx-2">
-                                    <select class="arr" name="status">
-                                        <option value="" style="display: none;">狀態</option>
-                                        <option value="啟用" {{$statusvalue == "啟用" ? 'selected' : ''}}>啟用</option>
-                                        <option value="停用" {{$statusvalue == "停用" ? 'selected' : ''}}>停用</option>
-                                    </select>
-                                </div>
+                            <!-- 狀態下拉選單 -->
+                            <div class="input-group ms-4">
+                                <select class="arr" name="status" aria-label="Example select with button addon">
+                                    <option value="" selected>全部</option>
+                                    <option value="啟用" {{ $statusvalue == '啟用' ? 'selected' : '' }}>啟用</option>
+                                    <option value="停用" {{ $statusvalue == '停用' ? 'selected' : '' }}>停用</option>
+                                </select>
 
                                 <!-- 搜尋框 -->
-                                <div class="input-group col-lg-8 pe-2">
-                                    <input type="search" name="search" class="form-control form-control-sm ts"
-                                        style="border-color: #d0a98a; font-size: small;" placeholder="請輸入會員編號"
-                                        aria-label="Recipient's username" aria-describedby="button-addon2" value="{{$searchwords}}">
-                                    <button class="btn_k btn-k5" type="submit" id="button-addon2"><i
-                                            class="fas fa-search"></i></button>
-                                </div>
-
+                                <input type="search" name="search" class="form-control form-control-sm ts"
+                                    style="border-color: #d0a98a; font-size: small;" placeholder="請輸入會員編號..."
+                                    aria-label="Recipient's username" aria-describedby="button-addon2"
+                                    value="{{ $searchwords }}">
+                                <button class="btn_k btn-k5" type="submit" id="button-addon2"><i
+                                        class="fas fa-search"></i></button>
                             </div>
                         </div>
                     </form>
@@ -200,7 +249,7 @@
                                 <td>{{ $item->email }}</td>
                                 <td>
                                     <!-- 啟用/停用 -->
-                                    {{$item->status}}
+                                    {{ $item->status }}
                                 </td>
                                 <td>
                                     <!--  編輯鈕 導向modal -->
@@ -316,8 +365,8 @@
                                                         <select class="form-select form-select-sm" name="job"
                                                             style="height: 40px; border-color: #d0a98a; font-size: small;">
                                                             <option value="" style="display: none;">請選擇</option>
-                                                            <option value="">學生</option>
-                                                            <option value="">上班族</option>
+                                                            <option value="學生" {{ $item->job == '學生' ? 'selected' : '' }}>學生</option>
+                                                            <option value="上班族"  {{ $item->job == '上班族' ? 'selected' : '' }}>上班族</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -453,11 +502,11 @@
                                                     <label for="city" class="col-form-label col-lg-4"
                                                         style="color: #ac6f47; font-weight: 600; font-size: medium;">狀態：</label>
                                                     <div class="col-lg-8">
-                                                        <select class="form-select form-select-sm" name=""
+                                                        <select class="form-select form-select-sm" name="status"
                                                             style="height: 40px; border-color: #d0a98a; font-size: small;">
-                                                            <option value="O"
+                                                            <option value="啟用"
                                                                 {{ $item->status == '啟用' ? 'selected' : '' }}>啟用</option>
-                                                            <option value="X"
+                                                            <option value="停用"
                                                                 {{ $item->status == '停用' ? 'selected' : '' }}>停用</option>
                                                         </select>
                                                     </div>
@@ -497,7 +546,7 @@
                         <div class="modal-body">
                             <!-- 表單 -->
                             <div class="container py-3">
-                                <form class="mx-auto row g-2" action="" method="post">
+                                <form class="mx-auto row g-2" action="/admin/memberlist/delete" method="post">
                                     @csrf
                                     <!-- 分欄 -->
                                     <div class="row">
@@ -574,8 +623,8 @@
                                                             style="height: 40px; border-color: #d0a98a; font-size: small;"
                                                             disabled>
                                                             <option value="" style="display: none;">請選擇</option>
-                                                            <option value="">學生</option>
-                                                            <option value="">上班族</option>
+                                                            <option value="學生" {{ $item->job == '學生' ? 'selected' : '' }}>學生</option>
+                                                            <option value="上班族" {{ $item->job == '上班族' ? 'selected' : '' }}>上班族</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -716,9 +765,9 @@
                                                         <select class="form-select form-select-sm" name="city"
                                                             style="height: 40px; border-color: #d0a98a; font-size: small;"
                                                             disabled>
-                                                            <option value="O"
+                                                            <option value="啟用"
                                                                 {{ $item->status == '啟用' ? 'selected' : '' }}>啟用</option>
-                                                            <option value="X"
+                                                            <option value="停用"
                                                                 {{ $item->status == '停用' ? 'selected' : '' }}>停用</option>
                                                         </select>
                                                     </div>
@@ -749,12 +798,12 @@
 
     </header>
 
-    @if(isset($key))
-    <div class="row mx-auto" style="width: 300px">
-        <div class="col-md-4 justify-content-center">
-            {{ $memberList->links('pagination::bootstrap-4') }}
+    @if (isset($key))
+        <div class="row mx-auto" style="width: 150px">
+            <div class="col-md-4 justify-content-center">
+                {{ $memberList->links('pagination::bootstrap-4') }}
+            </div>
         </div>
-    </div>
     @endif
 
 

@@ -192,14 +192,16 @@
                 <img width="400" class="mx-auto d-block col-lg-5" src="/layout/img/contact.png">
                 <div class="col-lg-7 px-5 bg-color-2" style="text-align: justify;">
                     <p class="h3 text-center py-1 pt-3 text-color-1" style="font-weight: 600;">
-                        <i class="fas fa-paw"></i>&nbsp與我們聯絡
+                        <i class="far fa-envelope-open"></i>&nbsp與我們聯絡
                     </p>
-                    <form class="" action="/send-email" method="post" id="form1" name="form11" onsubmit="return alert('&#128054;已收到您的留言，我們將盡快回復!&#128049;')">
+                    <form class="" action="/send-email" method="post" id="form1" name="form11"
+                        onsubmit="return alert('&#128054;已收到您的留言，我們將盡快回復!&#128049;')">
                         @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label text-color-4">E-mail</label>
                             <input type="email" name="feedbackName" id="feedbackName" class="form-control" id="pk"
-                                aria-describedby="emailHelp" required="required" style="border-color: #d0a98a;">
+                                aria-describedby="emailHelp" required="required" style="border-color: #d0a98a;"
+                                value="{{$account}}">
                         </div>
                         <div class="mb-3">
                             <label for="m" class="form-label text-color-4">主題</label>
@@ -211,8 +213,8 @@
                             <textarea class="form-control" name="feedbackContent" id="feedbackContent" rows="2"
                                 required="required" style="border-color: #d0a98a;"></textarea>
                         </div>
-                        <input type="submit" class="btn_k btn-k1" style="width: 70px;" name="button" id="button"
-                            >
+                        <button type="submit" class="btn_k btn-k1" style="width: 70px;" name="button" id="button"><i
+                                class="fas fa-paw"></i></button>
                     </form>
 
                 </div>

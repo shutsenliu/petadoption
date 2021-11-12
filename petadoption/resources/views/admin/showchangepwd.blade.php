@@ -40,27 +40,56 @@
             outline: 0 none;
         }
 
+        /* 各斷點 */
+        @media (max-width: 800px) {
+            .btn-sm {
+                font-size: .400rem !important;
+            }
+
+            .ts {
+                font-size: .200rem !important;
+            }
+
+            .arr {
+                font-size: .200rem !important;
+                height: 35px;
+            }
+
+            .tbs {
+                font-size: .200rem !important;
+            }
+
+            .nav-link2 {
+                font-size: .800rem !important;
+            }
+
+            nav ul {
+                font-size: 0.7rem !important;
+            }
+        }
+
+
     </style>
 @endsection
 
 @section('nav')
-<div class="row gx-0" id="navbar1">
-    <div class="mx-auto px-4 ms-1 justify-content-end">
+    <div class="row gx-0" id="navbar1">
+        <div class="mx-auto px-4 ms-1 justify-content-end">
 
-        <div class="d-flex me-4">
+            <div class="d-flex me-4">
 
-            <div class="col-sm-8 py-1">
-                <a href="/admin/logout"><button type="button" class="btn_k btn-k1 btn-sm"
-                        name="db_logout">登出</button></a>
+                <div class="col-sm-8 py-1">
+                    <a href="/admin/logout"><button type="button" class="btn_k btn-k1 btn-sm"
+                            name="db_logout">登出</button></a>
+                </div>
+                <div class="col-sm-12 py-1">
+                    <a href="/admin/memberlist"><button type="submit" class="btn_k btn-k4 btn-sm"
+                            name="db_change_pwd">返回後台</button></a>
+                </div>
             </div>
-            <div class="col-sm-12 py-1">
-                <a href="/admin/memberlist"><button type="submit" class="btn_k btn-k4 btn-sm"
-                    name="db_change_pwd">返回後台</button></a>
-            </div>
+
         </div>
-
     </div>
-</div>
 @endsection
 
 @section('content')
@@ -79,7 +108,8 @@
                     <div class="card-body py-3">
                         <p class="card-title h5 text-color-1" style="font-weight: 600; font-size: 25px;">修改管理者密碼</p>
                         <div class="container py-3">
-                            <form class="mx-3 row g-3" name="change_pwd" action="/admin/changepwd/{{$userpk}}" method="post">
+                            <form class="mx-3 row g-3" name="change_pwd" action="/admin/changepwd/{{ $userpk }}"
+                                method="post">
                                 @csrf
                                 <!-- 鎖頭icon -->
                                 <div class="gx-0" style="text-align: center;">

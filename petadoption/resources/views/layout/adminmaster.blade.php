@@ -31,6 +31,14 @@
       a {
         text-decoration: none
         }
+
+        /* 各斷點 */
+        @media (max-width: 800px) {
+          .aaa2 {
+                font-size: 1rem !important;
+            }
+        }
+
         
   </style>
   @yield('style')
@@ -44,7 +52,7 @@
     <div class="container-md">
       <a class="navbar-brand col-4">
         <img class="" src="/layout/img/index_logo_70.PNG" height="70" alt="logo">
-        <span class="h5" style="font-weight: 600; color: #d0a98a;">後台管理系統</span>
+        <span class="h5 aaa2" style="font-weight: 600; color: #d0a98a;">後台管理系統</span>
       </a>
       
     </div>

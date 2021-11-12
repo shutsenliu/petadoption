@@ -27,13 +27,12 @@
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
     <style>
-
-        .die{
+        .die {
             text-decoration: none !important
         }
 
-        .ha{
-            font-weight: 600!important;
+        .ha {
+            font-weight: 600 !important;
         }
 
     </style>
@@ -72,10 +71,17 @@
                                 class="rounded mx-auto d-block">我的帳戶
                         </a>
                         <div class="dropdown-menu bg-nav-item">
-                            <a class="dropdown-item die" href="/index/login">登入</a>
-                            <a class="dropdown-item die" href="/index/register">註冊</a>
+                            @if (!session()->has('account'))
+                                <a class="dropdown-item die" href="/index/login">登入</a>
+                                <a class="dropdown-item die" href="/index/registersendemail">註冊</a>
+                            @endif
+                            <a class="dropdown-item die" href="/index/memberpersonal">個人資訊</a>
                             <a class="dropdown-item die" href="/index/fosterinformation">送養資訊</a>
                             <a class="dropdown-item die" href="/index/adoptinformation">領養資訊</a>
+                            @if (session()->has('account'))
+                                <a class="dropdown-item die" href="/index/logout">登出</a>
+                            @endif
+
                         </div>
                     </li>
                     <li class="nav-item col-lg-2 text-center py-2">
@@ -91,7 +97,7 @@
                         </a>
                     </li>
                     <li class="nav-item col-lg-2 text-center py-2">
-                        <a class="nav-link1 die" href="/index/educatenp1">
+                        <a class="nav-link1 die" href="/index/educate">
                             <img src="/layout/img/icon_teach.png" height="60" alt=""
                                 class="rounded mx-auto d-block">宣導平台
                         </a>
@@ -139,9 +145,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
         integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous">
     </script>
-    
-      <!-- 引用js -->
-  <script src="/admin/js_k/k.js"></script>
+
+    <!-- 引用js -->
+    <script src="/admin/js_k/k.js"></script>
 
     <!--引用jquery-->
     <script src="/layout/js/jquery-1.12.4.js"></script>

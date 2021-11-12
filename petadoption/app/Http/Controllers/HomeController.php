@@ -13,7 +13,8 @@ class HomeController extends Controller
 
     //首頁
     public function index() {
-        return view("home.index");
+        $account = session('account');
+        return view("home.index", compact("account"));
     }
 
 
@@ -44,6 +45,11 @@ class HomeController extends Controller
 
     //TEAM 1
 
+    // 宣導頁首頁
+    public function educate() {
+        return view("home.educate");
+    }
+    
     // 宣導頁現有問題1
     public function educatenp1() {
         return view("home.educatenp1");

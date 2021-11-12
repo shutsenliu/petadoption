@@ -102,8 +102,8 @@ class AdminController extends Controller
         $searchwords = $request->input("search");
         $statusvalue = $request->input("status");
         $memberList = Member::where('status', 'like', "%{$statusvalue}%")
-        ->Where('pk', 'like', "%{$searchwords}%")
-        ->get();
+            ->Where('pk', 'like', "%{$searchwords}%")
+            ->get();
 
         //  return dd($results);
         return view('admin.memberlist', compact('memberList', 'searchwords', 'statusvalue'));
@@ -116,8 +116,7 @@ class AdminController extends Controller
         $member = Member::find($request->input("pk"));
 
         $member->gender = $request->input("gender");
-        //職業待補
-        // $member->job = $request->input("job");
+        $member->job = $request->input("job");
         $member->name = $request->input("name");
         $member->birth = $request->input("birth");
         $member->city = $request->input("city");
@@ -134,8 +133,11 @@ class AdminController extends Controller
     //刪除會員資料
     public function memberdelete(Request $request)
     {
-        $memberList = Member::orderBy('pk')->paginate(5);;
+        $memberList = Member::orderBy('pk')->get();
         $member = Member::find($request->input("pk"));
+
+        $searchwords = $request->input("search");
+        $statusvalue = $request->input("status");
 
         //確認此會員是否有刊登送養or申請領養
         $membercheckfos = Fosterlist::where('member_fk', $request->input("pk"))->first();
@@ -147,7 +149,7 @@ class AdminController extends Controller
             return redirect("/admin/memberlist");
         } else {
             //如果此會員有刊登資料，則提醒要先刪除所有刊登&申請資料
-            return view("/admin/memberlist", ['err' => "無法刪除會員編號： " . $request->input("pk") . " 的會員資料，請先刪除此會員的所有送養刊登&領養申請!"], compact("username", "memberList"));
+            return view("admin.memberlist", compact('memberList', 'searchwords', 'statusvalue'), ['err' => "無法刪除會員編號： " . $request->input("pk") . " 的會員資料，請先刪除此會員的所有送養刊登&領養申請!"]);
         }
     }
 
@@ -157,17 +159,30 @@ class AdminController extends Controller
         $fosterList = Fosterlist::orderBy('pk')->paginate(5);
         $searchwords = "";
         $statusvalue = "";
-        return view("admin.fosterlist", compact('fosterList', 'searchwords', 'statusvalue'),  ['key' => "search"]);
+
+        //將json圖檔解析並放到$fosterList中
+        foreach ($fosterList as $item) {
+            $data = json_decode($item->pic, true);
+            $item->pic = $data;
+        }
+
+        return view("admin.fosterlist", compact('fosterList', 'searchwords', 'statusvalue'), ['key' => "search"]);
     }
 
     //搜尋送養清單
     public function fostersearch(Request $request)
     {
+        //有重新return view("admin.fosterlist")的都要加上
         $statusvalue = $request->input("status");
         $searchwords = $request->input("search");
 
+        $fosterList = Fosterlist::where('status', 'like', "%{$statusvalue}%")->where('pk', 'like', "%{$searchwords}%")->get();
 
-        $fosterList= Fosterlist::where('status', 'like', "%{$statusvalue}%")->where('pk', 'like', "%{$searchwords}%")->get();
+        //有重新return view("admin.fosterlist")的都要重新解析json
+        foreach ($fosterList as $item) {
+            $data = json_decode($item->pic, true);
+            $item->pic = $data;
+        }
 
         //  return dd($status,$searchwords);
 
@@ -209,8 +224,6 @@ class AdminController extends Controller
     //刪除送養清單
     public function fosterlistdelete(Request $request)
     {
-        $fosterList = Fosterlist::orderBy('pk')->paginate(5);;
-
         $foster = Fosterlist::find($request->input("pk"));
 
         //確認是否有人申請這筆訂單的領養(領養清單裡是否有送養清單的pk)
@@ -222,9 +235,22 @@ class AdminController extends Controller
             //如果沒人申請，就可以刪除
             $foster->delete();
             return redirect("/admin/fosterlist");
+
         } else {
             //如果有人想領養這筆，不能刪除
-            return view("admin.fosterlist", ['err' => "無法刪除編號 " . $request->input("pk") . " 的送養訂單，請先刪除此送養清單的所有領養申請!"], compact("fosterList"));
+            $fosterList = Fosterlist::orderBy('pk')->get();
+
+            //有重新return view("admin.fosterlist")的都要加上
+            $searchwords = "";
+            $statusvalue = "";
+
+            //有重新return view("admin.fosterlist")的都要重新解析json
+            foreach ($fosterList as $item) {
+                $data = json_decode($item->pic, true);
+                $item->pic = $data;
+            }
+
+            return view("admin.fosterlist", ['err' => "無法刪除編號 " . $request->input("pk") . " 的送養訂單，請先刪除此送養清單的所有領養申請!"], compact("fosterList", 'searchwords', 'statusvalue'));
         }
     }
 
@@ -236,21 +262,20 @@ class AdminController extends Controller
         $statusvalue = "";
         $adoptList = Adoptlist::orderBy('pk')->paginate(5);
         return view("admin.adoptlist", compact('adoptList', 'searchwords', 'statusvalue'), ['key' => "search"]);
-
     }
 
     //搜尋領養清單
-    public function adoptsearch(Request $request) {
+    public function adoptsearch(Request $request)
+    {
 
         $statusvalue = $request->input("status");
         $searchwords = $request->input("search");
 
-        $adoptList= Adoptlist::where('status', 'like', "%{$statusvalue}%")->where('pk', 'like', "%{$searchwords}%")->get();
+        $adoptList = Adoptlist::where('status', 'like', "%{$statusvalue}%")->where('pk', 'like', "%{$searchwords}%")->get();
 
         //  return dd($status,$searchwords);
 
         return view('admin.adoptlist', compact('adoptList', 'searchwords', 'statusvalue'));
-
     }
 
     //編輯領養清單

@@ -37,7 +37,7 @@
             break;
         case '貓':
             str = `<option value="">請選擇</option>
-            <option  value="混種">混種</option>
+			<option  value="混種">混種</option>
             <option  value="金吉拉">金吉拉</option>
             <option  value="俄羅斯藍貓">俄羅斯藍貓</option>
             <option  value="英國藍貓">英國藍貓</option>
