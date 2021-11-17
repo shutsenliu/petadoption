@@ -44,7 +44,7 @@
 <body>
 
     <!-- 回到頁首按鈕 -->
-    <a class="js-back-to-top" style="display:none;position:fixed;bottom:20px;right:10px;">
+    <a class="js-back-to-top" style="display:none;position:fixed;bottom:20px;right:10px; z-index:9999;">
         <img src="/layout/img/to_top.png" height="40">
     </a>
 

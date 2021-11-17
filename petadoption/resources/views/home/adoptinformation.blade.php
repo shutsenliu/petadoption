@@ -13,9 +13,9 @@
     {{-- <h1>這是前台領養資訊頁</h1> --}}
     <h3 class="text-center mt-5">領養資訊管理</h3>
     <div class="container  position-relative my-4 " style="width: 40rem">
-        <div class="row Bborder rounded-3 p-4" style="height: 25rem;">
+        <div class="row Bborder rounded-3 p-4" style="height: 30rem;">
             <table class="table table-bordered table-sm vertical-align: middle"
-                style="text-align: center; vertical-align: middle; color: #ac6f47; border-color: #d0aa8ab7; font-size: small;">
+                style="text-align: center; vertical-align: middle; color: #ac6f47; border-color: #d0aa8ab7; font-size: small;height: 30px;">
                 <thead style="height: 50px; text-align: center; vertical-align: middle; background-color: #f5eadf42;">
                     <tr>
                         <th scope="col">申請日期</th>
@@ -41,6 +41,7 @@
                             <td>{{ $item->fosterlist['pet_city'] }}</td>
                         </tr>
                     @endforeach
+
                 </tbody>
             </table>
         </div>

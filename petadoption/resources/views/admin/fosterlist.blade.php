@@ -201,7 +201,7 @@
                 <div class="container">
                     <form action="" method="post" class="row mx-auto justify-content-end pb-4">
                         @csrf
-                        <div class="col-lg-3">
+                        <div class="col-lg-4">
 
                             <!-- 狀態下拉選單 -->
                             <div class="input-group ms-4">
@@ -1563,7 +1563,7 @@
     </header>
 
     @if (isset($key))
-        <div class="row mx-auto" style="width: 150px">
+        <div class="row mx-auto" style="width: 280px">
             <div class="col-md-4 justify-content-center">
                 {{ $fosterList->links('pagination::bootstrap-4') }}
             </div>

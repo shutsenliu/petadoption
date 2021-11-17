@@ -210,7 +210,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="msg" class="form-label text-color-4">想說的話</label>
-                            <textarea class="form-control" name="feedbackContent" id="feedbackContent" rows="2"
+                            <textarea class="form-control" name="feedbackContent" id="feedbackContent" rows="5"
                                 required="required" style="border-color: #d0a98a;"></textarea>
                         </div>
                         <button type="submit" class="btn_k btn-k1" style="width: 70px;" name="button" id="button"><i

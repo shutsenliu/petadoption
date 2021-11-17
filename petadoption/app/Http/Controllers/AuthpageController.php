@@ -40,7 +40,7 @@ class AuthpageController extends Controller
             $adopthowlong = intval((Carbon::today()->diffInDays($adoptdate, true)));
 
             if (($adopthowlong >= 30 && $adopthowlong <= 45) or ($adopthowlong >= 60 && $adopthowlong <= 75)) {
-                $item->remark = " $item->pet_name 已送養滿 $adopthowlong 天";
+                $item->remark = " $item->pet_name 已送養滿 $adopthowlong 天，請記得追蹤領養人哦";
             }
         }
         return view("home.memberpersonal", compact('gender', 'member', 'memberfosterlist'));

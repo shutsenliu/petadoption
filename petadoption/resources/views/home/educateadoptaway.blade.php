@@ -31,7 +31,7 @@
                     <button type="button" class="list-group-item list-group-item-action" disabled>...收容所</button>
                 </div>
                 <hr class="my-5">
-                <a class="btn btn-primary my-2" href="/fosterlist">領養系統</a>
+                <a class="btn btn-primary my-2" href="/fosterlist">我要領養</a>
             </div>
             <div class="col-md-6  text-center">
                 <div id="map-container-google-2" class="z-depth-1-half map-container">
