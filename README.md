@@ -12,6 +12,10 @@
 
 五、後台系統：以管理員帳號進入網站後台，進行網站會員管理&領養/送養相關資訊管理。
 
+網站架構圖：
+
+https://www.figma.com/file/9fEgkPqTzGWbKabhbRuCnt/%E7%B6%B2%E7%AB%99%E6%9E%B6%E6%A7%8B%E5%9C%96?node-id=0%3A1
+
 
 後端使用工具：Laravel、MySQL
 
