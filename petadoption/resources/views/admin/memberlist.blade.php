@@ -190,13 +190,13 @@
 
             <div class="mx-auto row pt-5">
 
-                <div class="www mx-auto pb-1" style="text-align: center; font-size: medium;">
+                {{-- <div class="www mx-auto pb-1" style="text-align: center; font-size: medium;">
 
                     @if (@isset($err))
                         <a class="fas fa-exclamation-circle" style="display: inline-block; color: #e6a565;">&nbsp</a>
                         {{ $err }}
                     @endif
-                </div>
+                </div> --}}
 
                 <!-- 狀態下拉選單+搜尋框 -->
                 <div class="container">

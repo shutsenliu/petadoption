@@ -189,55 +189,59 @@ Route::post('/fosterlist/create', "App\Http\Controllers\FosterlistController@sto
 
 //TEAM 2
 
-//後台會員清單
-Route::get('/admin/memberlist', "App\Http\Controllers\AdminController@memberlist")->middleware('userAuth');
+Route::group(['middleware' => 'userAuth'], function () {
+    //後台會員清單
+    Route::get('/admin/memberlist', "App\Http\Controllers\AdminController@memberlist");
 
-//搜尋會員清單
-Route::post('/admin/memberlist', "App\Http\Controllers\AdminController@membersearch")->middleware('userAuth');
+    //搜尋會員清單
+    Route::post('/admin/memberlist', "App\Http\Controllers\AdminController@membersearch");
 
-//編輯會員資料
-Route::post('/admin/memberlist/update', "App\Http\Controllers\AdminController@memberupdate")->middleware('userAuth');
+    //編輯會員資料
+    Route::post('/admin/memberlist/update', "App\Http\Controllers\AdminController@memberupdate");
 
-//刪除會員資料
-Route::post('/admin/memberlist/delete', "App\Http\Controllers\AdminController@memberdelete")->middleware('userAuth');
-
-
-
-//後台送養清單
-Route::get('/admin/fosterlist', "App\Http\Controllers\AdminController@fosterlist")->middleware('userAuth');
-
-//搜尋送養清單
-Route::post('/admin/fosterlist', "App\Http\Controllers\AdminController@fostersearch")->middleware('userAuth');
-
-//編輯送養清單
-Route::post('/admin/fosterlist/update', "App\Http\Controllers\AdminController@fosterlistupdate")->middleware('userAuth');
-
-//刪除送養清單
-Route::post('/admin/fosterlist/delete', "App\Http\Controllers\AdminController@fosterlistdelete")->middleware('userAuth');
+    //刪除會員資料
+    Route::post('/admin/memberlist/delete', "App\Http\Controllers\AdminController@memberdelete");
 
 
 
+    //後台送養清單
+    Route::get('/admin/fosterlist', "App\Http\Controllers\AdminController@fosterlist");
 
-//後台領養清單
-Route::get('/admin/adoptlist', "App\Http\Controllers\AdminController@adoptlist")->middleware('userAuth');
+    //搜尋送養清單
+    Route::post('/admin/fosterlist', "App\Http\Controllers\AdminController@fostersearch");
 
-//搜尋送養清單
-Route::post('/admin/adoptlist', "App\Http\Controllers\AdminController@adoptsearch")->middleware('userAuth');
+    //編輯送養清單
+    Route::post('/admin/fosterlist/update', "App\Http\Controllers\AdminController@fosterlistupdate");
 
-//編輯領養清單
-Route::post('/admin/adoptlist/update', "App\Http\Controllers\AdminController@adoptlistupdate")->middleware('userAuth');
-
-//編輯領養清單
-Route::post('/admin/adoptlist/delete', "App\Http\Controllers\AdminController@adoptlistdelete")->middleware('userAuth');
+    //刪除送養清單
+    Route::post('/admin/fosterlist/delete', "App\Http\Controllers\AdminController@fosterlistdelete");
 
 
 
 
-//後台修改密碼頁面
-Route::get('/admin/changepwd', 'App\Http\Controllers\AdminController@showchangepwd')->middleware('userAuth');
+    //後台領養清單
+    Route::get('/admin/adoptlist', "App\Http\Controllers\AdminController@adoptlist");
 
-//後台修改密碼頁面
-Route::post('/admin/changepwd/{id}', 'App\Http\Controllers\AdminController@changepwd')->middleware('userAuth');
+    //搜尋送養清單
+    Route::post('/admin/adoptlist', "App\Http\Controllers\AdminController@adoptsearch");
+
+    //編輯領養清單
+    Route::post('/admin/adoptlist/update', "App\Http\Controllers\AdminController@adoptlistupdate");
+
+    //刪除領養清單
+    Route::post('/admin/adoptlist/delete', "App\Http\Controllers\AdminController@adoptlistdelete");
+
+
+
+
+    //後台修改密碼頁面
+    Route::get('/admin/changepwd', 'App\Http\Controllers\AdminController@showchangepwd');
+
+    //後台修改密碼請求
+    Route::post('/admin/changepwd/{id}', 'App\Http\Controllers\AdminController@changepwd');
+});
+
+
 
 
 
@@ -249,5 +253,3 @@ Route::get('/admin/login', 'App\Http\Controllers\AdminController@showLoginPage')
 
 //後台登出
 Route::get('/admin/logout', 'App\Http\Controllers\AdminController@logout');
-
-
