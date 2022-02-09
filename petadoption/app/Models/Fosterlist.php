@@ -14,7 +14,7 @@ class Fosterlist extends Model
     public $timestamps = false;
 
     function member() {
-        return $this -> belongsTo(Member::class, 'member_fk');
+        return $this -> belongsTo(Member::class, 'member_fk', 'pk');
     }
 
     function adoptlist() {
