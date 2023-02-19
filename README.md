@@ -17,7 +17,7 @@
 https://www.figma.com/file/9fEgkPqTzGWbKabhbRuCnt/%E7%B6%B2%E7%AB%99%E6%9E%B6%E6%A7%8B%E5%9C%96?node-id=0%3A1
 
 
-後端使用工具：Laravel、MySQL
+後端使用工具：PHP、Laravel、MySQL
 
 
 
